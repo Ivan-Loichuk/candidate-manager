@@ -6,31 +6,31 @@
             </a>
         </div>
         <ul class="nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_dashboard' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
                     <i class="nc-icon nc-chart-pie-35"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li>
-                <a class="nav-link" href="/admin/candidates">
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_candidates' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('app_admin_candidates') }}">
                     <i class="nc-icon nc-circle-09"></i>
                     <p>Candidates</p>
                 </a>
             </li>
-            <li>
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_offers' %}active{% endif %}">
                 <a class="nav-link" href="admin/offers">
                     <i class="nc-icon nc-notes"></i>
                     <p>Job offers</p>
                 </a>
             </li>
-            <li>
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_mailer' %}active{% endif %}">
                 <a class="nav-link" href="/admin/mailer">
                     <i class="nc-icon nc-pin-3"></i>
                     <p>Mailer</p>
                 </a>
             </li>
-            <li>
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_applications' %}active{% endif %}">
                 <a class="nav-link" href="/admin/applications">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>New applications</p>

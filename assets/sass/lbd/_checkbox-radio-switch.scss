@@ -138,3 +138,12 @@
 .form-check-radio input[type="radio"]:disabled + .form-check-sign::after {
     color: $dark-gray;
 }
+
+.radioGender {
+    padding-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    label {
+        padding-left: 0px!important;
+    }
+}
