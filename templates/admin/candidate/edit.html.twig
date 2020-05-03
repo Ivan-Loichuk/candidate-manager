@@ -2,93 +2,189 @@
 
 {% block body %}
     <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Edit Candidate</h4>
-                        </div>
-                        <div class="card-body">
-                            {{ form_start(form) }}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.firstname) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.lastname) }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.email) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.phoneNumber) }}
-                                        </div>
-                                    </div>
-                                </div>
+        {{ form_start(form) }}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% include '@common_admin_tpl/flashes.html.twig' %}
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">{{ 'personal data'|trans|capitalize }}</h4>
+                            </div>
+                            <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            {{ form_row(form.viber) }}
+                                            <label for="candidate_firstname">{{ 'firstname'|trans }}</label>
+                                            {{ form_widget(form.firstname) }}
+                                            <div class="errors">
+                                                {{ form_errors(form.firstname) }}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            {{ form_row(form.skype) }}
+                                            <label for="candidate_lastname">{{ 'lastname'|trans }}</label>
+                                            {{ form_widget(form.lastname) }}
+                                            <div class="errors">
+                                                {{ form_errors(form.lastname) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            {{ form_row(form.profession) }}
+                                            <label for="candidate_profession">{{ 'profession'|trans }}</label>
+                                            {{ form_widget(form.profession) }}
+                                            <div class="errors">
+                                                {{ form_errors(form.profession) }}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            {{ form_row(form.gender) }}
+                                            <label for="candidate_gender">{{ 'gender'|trans }}</label>
+                                            {{ form_widget(form.gender) }}
+                                            <div class="errors">
+                                                {{ form_errors(form.gender) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for="candidate_nationality">{{ 'nationality'|trans }}</label>
+                                            {{ form_widget(form.nationality) }}
+                                            <div class="errors">
+                                                {{ form_errors(form.nationality) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for="candidate_nationality">{{ 'date of birth'|trans }}</label>
+                                            {{ form_widget(form.dateOfBirth) }}
+                                            <div class="errors">
+                                                {{ form_errors(form.dateOfBirth) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            {{ form_row(form.jobSummary) }}
+                                            <label for="candidate_about_candidate">{{ 'about candidate'|trans }}</label>
+                                            {{ form_widget(form.aboutCandidate) }}
+                                            <div class="errors">
+                                                {{ form_errors(form.aboutCandidate) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <h4>Birthplace</h4>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.birthplace.country) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            {{ form_row(form.birthplace.city) }}
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="clearfix"></div>
-                            {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{ 'contact data'|trans|capitalize }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="candidate_email">{{ 'email'|trans }}</label>
+                                                    {{ form_widget(form.email) }}
+                                                    <div class="errors">
+                                                        {{ form_errors(form.email) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="candidate_phone_number">{{ 'phone number'|trans }}</label>
+                                                    {{ form_widget(form.phoneNumber) }}
+                                                    <div class="errors">
+                                                        {{ form_errors(form.phoneNumber) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="candidate_viber">{{ 'viber'|trans }}</label>
+                                                    {{ form_widget(form.viber) }}
+                                                    <div class="errors">
+                                                        {{ form_errors(form.viber) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="candidate_skype">{{ 'skype'|trans }}</label>
+                                                    {{ form_widget(form.skype) }}
+                                                    <div class="errors">
+                                                        {{ form_errors(form.skype) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{ 'birthplace'|trans|capitalize }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="candidate_birthplace_country">{{ 'country'|trans }}</label>
+                                                    {{ form_widget(form.birthplace.country) }}
+                                                    <div class="errors">
+                                                        {{ form_errors(form.birthplace.country) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12">
+                                                <div class="form-group">
+                                                    <label for="candidate_birthplace_city">{{ 'city'|trans }}</label>
+                                                    {{ form_widget(form.birthplace.city) }}
+                                                    <div class="errors">
+                                                        {{ form_errors(form.birthplace.city) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="text-right">
+                                                    {{ form_widget(form.update_profile,  { 'label': 'Save' }) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {{ form_end(form) }}
     </div>
 {% endblock  %}

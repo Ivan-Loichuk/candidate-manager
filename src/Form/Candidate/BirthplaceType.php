@@ -25,6 +25,7 @@ class BirthplaceType extends AbstractType
                 ]
             ])
             ->add('city', TextType::class, [
+                'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ]

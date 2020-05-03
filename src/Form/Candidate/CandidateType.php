@@ -22,36 +22,43 @@ class CandidateType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
+                'required'   => true,
                 'attr' => [
                     'class' => 'form-control'
                 ],
             ])
             ->add('lastname', TextType::class, [
+                'required'   => true,
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('email', TextType::class, [
+                'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('phoneNumber', TextType::class, [
+                'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('viber', TextType::class, [
+                'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('skype', TextType::class, [
+                'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('profession', TextType::class, [
+                'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
@@ -65,9 +72,10 @@ class CandidateType extends AbstractType
                     'FEMALE' => 'FEMALE',
                 ]
             ])
-            ->add('jobSummary', TextareaType::class, [
+            ->add('aboutCandidate', TextareaType::class, [
+                'required'   => false,
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control about-candidate',
                 ],
             ])
             ->add('birthplace', BirthplaceType::class, [
@@ -75,9 +83,23 @@ class CandidateType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+            ->add('nationality', TextType::class, [
+                'required'   => true,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('dateOfBirth', DateType::class, [
+                'required'   => true,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control js-datepicker',
+                    'type' => 'date'
+                ],
+            ])
             ->add('update_profile', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-info btn-fill pull-right',
+                    'class' => 'btn btn-info btn-fill pull-right btn-save',
                 ]
             ])
         ;

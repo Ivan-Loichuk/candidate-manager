@@ -1,0 +1,1 @@
+import '../../sass/admin/admin-application.scss';

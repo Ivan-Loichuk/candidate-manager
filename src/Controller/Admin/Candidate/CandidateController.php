@@ -11,8 +11,12 @@ use App\Repository\CandidateRepository;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\Translator;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class DashboardController
@@ -43,7 +47,7 @@ class CandidateController extends AbstractController
         $candidate->setDateOfBirth(new \DateTime("now"));
         $candidate->setGender('MALE');
 
-        $candidate->setJobSummary("OK");
+        $candidate->setAboutCandidate("OK");
         $candidate->setPhoneNumber("+8556585665");
 
         $birthplace = new Birthplace();
@@ -70,14 +74,45 @@ class CandidateController extends AbstractController
     /**
      * @Route("/candidate/{id}/edit", methods="POST|GET", name="app_admin_candidate_edit")
      */
-    public function editCandidate($id, CandidateRepository $candidateRepository)
+    public function editCandidate($id, CandidateRepository $candidateRepository, ValidatorInterface $validator, Request $request, TranslatorInterface $translator)
     {
         $candidate = $candidateRepository->findOneBy(['id' => $id]);
 
         $form = $this->createForm(CandidateType::class, $candidate);
 
+        if ($request->isMethod('POST')) {
+            $form->submit($request->request->get($form->getName()));
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $this->getDoctrine()->getManager()->flush();
+
+                $this->addFlash(
+                    'success',
+                    $translator->trans('Your changes were saved!')
+                );
+
+                return $this->render('admin/candidate/edit.html.twig',[
+                    'form' => $form->createView(),
+                    'success_message' => 'Updated',
+                ]);
+            }
+        }
+
         return $this->render('admin/candidate/edit.html.twig',[
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/candidate/{id}/show", methods="GET", name="app_admin_candidate_show")
+     */
+    public function showCandidate($id, CandidateRepository $candidateRepository, TranslatorInterface $translator)
+    {
+        $candidate = $candidateRepository->findOneBy(['id' => $id]);
+
+        return $this->render('admin/candidate/show.html.twig',[
+            'candidate' => $candidate,
         ]);
     }
 

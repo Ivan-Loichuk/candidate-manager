@@ -1,0 +1,30 @@
+.profile-page {
+  .profile__header {
+    overflow: hidden;
+    p {
+      margin: 20px 0;
+    }
+  }
+  .card {
+    margin-bottom: 15px;
+  }
+  .card-header {
+    border-bottom: 1px #e2e0e0 solid!important;
+    padding-bottom: 10px;
+  }
+  .card-title {
+    font-size: 20px;
+    color: #797c82;
+  }
+  .profile__header h4 {
+    margin: 0;
+  }
+  .table {
+    td.last {
+      width: 100%;
+    }
+    tr:first-child td {
+      border-top: none;
+    }
+  }
+}

@@ -11,3 +11,11 @@
 	display: inline-table;
 
 }
+
+.icon-link {
+	color: #7c7e80;
+	padding: 0px 10px;
+	&:hover {
+		color: #343434;
+	}
+}

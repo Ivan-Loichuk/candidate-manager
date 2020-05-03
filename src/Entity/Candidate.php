@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CandidateRepository")
@@ -19,17 +20,34 @@ class Candidate
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 100,
+     *      minMessage = "Your last name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your last name cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = false
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('MALE', 'FEMALE')")
+     * @Assert\NotBlank
      */
     private $gender;
 
@@ -45,33 +63,63 @@ class Candidate
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email."
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *     pattern="/^[0-9\-\(\)\/\+\s]*$/",
+     *     match=true,
+     *     message="Wrong phone number"
+     * )
+     * @Assert\Length(
+     *      min = 9,
+     *      max = 15,
+     *      minMessage = "Your number must be at least {{ limit }} characters long",
+     *      maxMessage = "Your number cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = true
+     * )
      */
     private $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Your viber must be at least {{ limit }} characters long",
+     *      maxMessage = "Your viber cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = true
+     * )
      */
     private $viber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Your skype  must be at least {{ limit }} characters long",
+     *      maxMessage = "Your skype cannot be longer than {{ limit }} characters",
+     *      allowEmptyString = true
+     * )
      */
     private $skype;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank
      */
     private $dateOfBirth;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $jobSummary;
+    private $aboutCandidate;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\LegalizationDocument", mappedBy="idCandidate")
@@ -221,14 +269,14 @@ class Candidate
         return $this;
     }
 
-    public function getJobSummary(): ?string
+    public function getAboutCandidate(): ?string
     {
-        return $this->jobSummary;
+        return $this->aboutCandidate;
     }
 
-    public function setJobSummary(?string $jobSummary): self
+    public function setAboutCandidate(?string $aboutCandidate): self
     {
-        $this->jobSummary = $jobSummary;
+        $this->aboutCandidate = $aboutCandidate;
 
         return $this;
     }
