@@ -1,57 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
-  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+  <file source-language="pl" target-language="en" datatype="plaintext" original="file.ext">
     <header>
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+      <trans-unit id="GlFsd4Q" resname="strona główna">
+        <source>strona główna</source>
+        <target>__strona główna</target>
+      </trans-unit>
+      <trans-unit id="jEoDFoc" resname="szukaj">
+        <source>szukaj</source>
+        <target>__szukaj</target>
+      </trans-unit>
+      <trans-unit id="YkmmfjN" resname="ustawienia">
+        <source>ustawienia</source>
+        <target>__ustawienia</target>
+      </trans-unit>
+      <trans-unit id="UWSrOEQ" resname="wyloguj">
+        <source>wyloguj</source>
+        <target>__wyloguj</target>
+      </trans-unit>
+      <trans-unit id="0m9ecii" resname="HR manager">
+        <source>HR manager</source>
+        <target>__HR manager</target>
+      </trans-unit>
+      <trans-unit id="ysAGp6r" resname="pracowniki">
+        <source>pracowniki</source>
+        <target>__pracowniki</target>
+      </trans-unit>
+      <trans-unit id="H4zq9NH" resname="firmy">
+        <source>firmy</source>
+        <target>__firmy</target>
+      </trans-unit>
+      <trans-unit id="PwZYTdu" resname="Login could not be found.">
+        <source>Login could not be found.</source>
+        <target>__Login could not be found.</target>
+      </trans-unit>
       <trans-unit id="jbqF3b8" resname="Your changes were saved!">
         <source>Your changes were saved!</source>
         <target>__Your changes were saved!</target>
       </trans-unit>
-      <trans-unit id="2FUzunh" resname="personal data">
-        <source>personal data</source>
-        <target>__personal data</target>
+      <trans-unit id="et8XMxP" resname="dane osobowe">
+        <source>dane osobowe</source>
+        <target>__dane osobowe</target>
       </trans-unit>
-      <trans-unit id="TP3eab3" resname="firstname">
-        <source>firstname</source>
-        <target>__firstname</target>
+      <trans-unit id="an5l88J" resname="imię">
+        <source>imię</source>
+        <target>__imię</target>
       </trans-unit>
-      <trans-unit id="VbXFH4Z" resname="lastname">
-        <source>lastname</source>
-        <target>__lastname</target>
+      <trans-unit id="vNFvfhX" resname="nazwisko">
+        <source>nazwisko</source>
+        <target>__nazwisko</target>
       </trans-unit>
-      <trans-unit id="UODSUCK" resname="profession">
-        <source>profession</source>
-        <target>__profession</target>
+      <trans-unit id="AuSVK9U" resname="zawód">
+        <source>zawód</source>
+        <target>__zawód</target>
       </trans-unit>
-      <trans-unit id="3p.q6ot" resname="gender">
-        <source>gender</source>
-        <target>__gender</target>
+      <trans-unit id="PWVyz9b" resname="płeć">
+        <source>płeć</source>
+        <target>__płeć</target>
       </trans-unit>
-      <trans-unit id="D1QNPhL" resname="nationality">
-        <source>nationality</source>
-        <target>__nationality</target>
+      <trans-unit id="oS91NN_" resname="narodowość">
+        <source>narodowość</source>
+        <target>__narodowość</target>
       </trans-unit>
-      <trans-unit id="n3I6Lno" resname="date of birth">
-        <source>date of birth</source>
-        <target>__date of birth</target>
+      <trans-unit id="8CkyA5p" resname="data urodzenia">
+        <source>data urodzenia</source>
+        <target>__data urodzenia</target>
       </trans-unit>
-      <trans-unit id="1j3jACd" resname="about candidate">
-        <source>about candidate</source>
-        <target>__about candidate</target>
+      <trans-unit id="oA_P5zX" resname="o kandydacie">
+        <source>o kandydacie</source>
+        <target>__o kandydacie</target>
       </trans-unit>
-      <trans-unit id="QI2ts_m" resname="contact data">
-        <source>contact data</source>
-        <target>__contact data</target>
+      <trans-unit id="pRiYWnS" resname="dane kontaktowe">
+        <source>dane kontaktowe</source>
+        <target>__dane kontaktowe</target>
       </trans-unit>
       <trans-unit id="giREF.l" resname="email">
         <source>email</source>
         <target>__email</target>
       </trans-unit>
-      <trans-unit id="PnqTnpb" resname="phone number">
-        <source>phone number</source>
-        <target>__phone number</target>
+      <trans-unit id="CzNeF8W" resname="numer telefonu">
+        <source>numer telefonu</source>
+        <target>__numer telefonu</target>
       </trans-unit>
       <trans-unit id="jJEBcCl" resname="viber">
         <source>viber</source>
@@ -61,29 +93,29 @@
         <source>skype</source>
         <target>__skype</target>
       </trans-unit>
-      <trans-unit id="04rI.AL" resname="birthplace">
-        <source>birthplace</source>
-        <target>__birthplace</target>
+      <trans-unit id="z2y2ggV" resname="miejsce urodzenia">
+        <source>miejsce urodzenia</source>
+        <target>__miejsce urodzenia</target>
       </trans-unit>
-      <trans-unit id="r.ZOT9U" resname="country">
-        <source>country</source>
-        <target>__country</target>
+      <trans-unit id="aBl4Nsg" resname="kraj">
+        <source>kraj</source>
+        <target>__kraj</target>
       </trans-unit>
-      <trans-unit id="EaYsI0E" resname="city">
-        <source>city</source>
-        <target>__city</target>
+      <trans-unit id="kprnwny" resname="miasto">
+        <source>miasto</source>
+        <target>__miasto</target>
       </trans-unit>
-      <trans-unit id="zl8ntzR" resname="candidates list">
-        <source>candidates list</source>
-        <target>__candidates list</target>
+      <trans-unit id="tqDAxGn" resname="Zapisz">
+        <source>Zapisz</source>
+        <target>__Zapisz</target>
       </trans-unit>
-      <trans-unit id="gqNTf.D" resname="name">
-        <source>name</source>
-        <target>__name</target>
+      <trans-unit id="5VaUDZ7" resname="lista kandydatów">
+        <source>lista kandydatów</source>
+        <target>__lista kandydatów</target>
       </trans-unit>
-      <trans-unit id="HiE10bU" resname="controls">
-        <source>controls</source>
-        <target>__controls</target>
+      <trans-unit id="4bey_D." resname="akcje">
+        <source>akcje</source>
+        <target>__akcje</target>
       </trans-unit>
       <trans-unit id="0FLxN7B" resname="show candidate">
         <source>show candidate</source>
@@ -93,29 +125,25 @@
         <source>edit candidate</source>
         <target>__edit candidate</target>
       </trans-unit>
-      <trans-unit id="Iv7Pjby" resname="send email">
-        <source>send email</source>
-        <target>__send email</target>
+      <trans-unit id="lYGAkzf" resname="napisz maila">
+        <source>napisz maila</source>
+        <target>__napisz maila</target>
       </trans-unit>
-      <trans-unit id="fwNIweL" resname="log in">
-        <source>log in</source>
-        <target>__log in</target>
+      <trans-unit id="BIDx1Q1" resname="logowanie">
+        <source>logowanie</source>
+        <target>__logowanie</target>
       </trans-unit>
       <trans-unit id="QoghNQ6" resname="login">
         <source>login</source>
         <target>__login</target>
       </trans-unit>
-      <trans-unit id="XohImNo" resname="password">
-        <source>password</source>
-        <target>__password</target>
+      <trans-unit id="WZRZ.e3" resname="hasło">
+        <source>hasło</source>
+        <target>__hasło</target>
       </trans-unit>
-      <trans-unit id="78lFkwk" resname="login_action">
-        <source>login_action</source>
-        <target state="translated">login</target>
-      </trans-unit>
-      <trans-unit id="PwZYTdu" resname="Login could not be found.">
-        <source>Login could not be found.</source>
-        <target>__Login could not be found.</target>
+      <trans-unit id="laD9_rq" resname="zaloguj">
+        <source>zaloguj</source>
+        <target>__zaloguj</target>
       </trans-unit>
     </body>
   </file>

@@ -17,7 +17,7 @@
             <div class="wrap-login">
                 <form class="login-form" method="post">
 					<span class="login-form-title">
-						<strong>{{ 'log in'|trans|capitalize }}</strong>
+						<strong>{{ 'logowanie'|trans|capitalize }}</strong>
 					</span>
 
                     <div class="wrap-input" >
@@ -27,14 +27,14 @@
 
                     <div class="wrap-input">
                         <input type="password" name="password" id="inputPassword" class="form-control input100" required>
-                        <span class="focus-input" data-placeholder="{{ 'password'|trans|capitalize }}"></span>
+                        <span class="focus-input" data-placeholder="{{ 'hasło'|trans|capitalize }}"></span>
                     </div>
 
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
                     >
                     <div class="container-login-form-btn">
-                        <button class="login-form-btn" type="submit">{{ 'login_action'|trans|capitalize }}</button>
+                        <button class="login-form-btn" type="submit">{{ 'zaloguj'|trans|capitalize }}</button>
                     </div>
 
                     {% if error %}

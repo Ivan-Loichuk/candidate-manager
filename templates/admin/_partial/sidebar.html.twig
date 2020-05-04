@@ -1,27 +1,27 @@
 <div class="sidebar" data-image="{{ asset('build/sidebar-5.jpg') }}">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
-                Candidate Manager
+            <a class="simple-text">
+                {{ 'HR manager'|trans|capitalize }}
             </a>
         </div>
         <ul class="nav">
             <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_dashboard' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
                     <i class="nc-icon nc-chart-pie-35"></i>
-                    <p>Dashboard</p>
+                    <p> {{ 'strona główna'|trans|capitalize }}</p>
                 </a>
             </li>
             <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_candidates' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('app_admin_candidates') }}">
                     <i class="nc-icon nc-circle-09"></i>
-                    <p>Candidates</p>
+                    <p> {{ 'pracowniki'|trans|capitalize }}</p>
                 </a>
             </li>
             <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_offers' %}active{% endif %}">
                 <a class="nav-link" href="admin/offers">
                     <i class="nc-icon nc-notes"></i>
-                    <p>Job offers</p>
+                    <p>{{ 'firmy'|trans|capitalize }}</p>
                 </a>
             </li>
             <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_mailer' %}active{% endif %}">

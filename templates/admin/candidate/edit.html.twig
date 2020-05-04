@@ -14,13 +14,13 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">{{ 'personal data'|trans|capitalize }}</h4>
+                                <h4 class="card-title">{{ 'dane osobowe'|trans|capitalize }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for="candidate_firstname">{{ 'firstname'|trans }}</label>
+                                            <label for="candidate_firstname">{{ 'imię'|trans }}</label>
                                             {{ form_widget(form.firstname) }}
                                             <div class="errors">
                                                 {{ form_errors(form.firstname) }}
@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for="candidate_lastname">{{ 'lastname'|trans }}</label>
+                                            <label for="candidate_lastname">{{ 'nazwisko'|trans }}</label>
                                             {{ form_widget(form.lastname) }}
                                             <div class="errors">
                                                 {{ form_errors(form.lastname) }}
@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for="candidate_profession">{{ 'profession'|trans }}</label>
+                                            <label for="candidate_profession">{{ 'zawód'|trans }}</label>
                                             {{ form_widget(form.profession) }}
                                             <div class="errors">
                                                 {{ form_errors(form.profession) }}
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for="candidate_gender">{{ 'gender'|trans }}</label>
+                                            <label for="candidate_gender">{{ 'płeć'|trans }}</label>
                                             {{ form_widget(form.gender) }}
                                             <div class="errors">
                                                 {{ form_errors(form.gender) }}
@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for="candidate_nationality">{{ 'nationality'|trans }}</label>
+                                            <label for="candidate_nationality">{{ 'narodowość'|trans }}</label>
                                             {{ form_widget(form.nationality) }}
                                             <div class="errors">
                                                 {{ form_errors(form.nationality) }}
@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="form-group">
-                                            <label for="candidate_nationality">{{ 'date of birth'|trans }}</label>
+                                            <label for="candidate_nationality">{{ 'data urodzenia'|trans }}</label>
                                             {{ form_widget(form.dateOfBirth) }}
                                             <div class="errors">
                                                 {{ form_errors(form.dateOfBirth) }}
@@ -80,7 +80,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="candidate_about_candidate">{{ 'about candidate'|trans }}</label>
+                                            <label for="candidate_about_candidate">{{ 'o kandydacie'|trans }}</label>
                                             {{ form_widget(form.aboutCandidate) }}
                                             <div class="errors">
                                                 {{ form_errors(form.aboutCandidate) }}
@@ -97,7 +97,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">{{ 'contact data'|trans|capitalize }}</h4>
+                                        <h4 class="card-title">{{ 'dane kontaktowe'|trans|capitalize }}</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="candidate_phone_number">{{ 'phone number'|trans }}</label>
+                                                    <label for="candidate_phone_number">{{ 'numer telefonu'|trans }}</label>
                                                     {{ form_widget(form.phoneNumber) }}
                                                     <div class="errors">
                                                         {{ form_errors(form.phoneNumber) }}
@@ -147,13 +147,13 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">{{ 'birthplace'|trans|capitalize }}</h4>
+                                        <h4 class="card-title">{{ 'miejsce urodzenia'|trans|capitalize }}</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="candidate_birthplace_country">{{ 'country'|trans }}</label>
+                                                    <label for="candidate_birthplace_country">{{ 'kraj'|trans }}</label>
                                                     {{ form_widget(form.birthplace.country) }}
                                                     <div class="errors">
                                                         {{ form_errors(form.birthplace.country) }}
@@ -162,7 +162,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
-                                                    <label for="candidate_birthplace_city">{{ 'city'|trans }}</label>
+                                                    <label for="candidate_birthplace_city">{{ 'miasto'|trans }}</label>
                                                     {{ form_widget(form.birthplace.city) }}
                                                     <div class="errors">
                                                         {{ form_errors(form.birthplace.city) }}
@@ -173,7 +173,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="text-right">
-                                                    {{ form_widget(form.update_profile,  { 'label': 'Save' }) }}
+                                                    {{ form_widget(form.update_profile,  { 'label': "Zapisz"|trans }) }}
                                                 </div>
                                             </div>
                                         </div>
