@@ -30,11 +30,16 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">Edit tasks</a>
                         <div class="divider"></div>
-                        <a class="dropdown-item" href="#">Log out</a>
+                        <a class="dropdown-item" href="{{ path('app_logout') }}">Log out</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#pablo">
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+                    <a class="nav-link" href="{{ path('app_logout') }}">
                         <span class="no-icon">Log out</span>
                     </a>
                 </li>

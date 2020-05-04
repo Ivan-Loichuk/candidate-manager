@@ -8,12 +8,12 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class DashboardController
  * @package App\Controller\Admin
- * @Route("/admin")
+ * @Route("/admin", name="app_admin_")
  */
 class DashboardController extends AbstractController
 {
     /**
-     * @Route("/dashboard", name="app_admin_dashboard")
+     * @Route("/dashboard", name="dashboard")
      */
     public function admin()
     {

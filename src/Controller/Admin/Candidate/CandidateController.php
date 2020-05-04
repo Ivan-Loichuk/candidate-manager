@@ -4,7 +4,6 @@ namespace App\Controller\Admin\Candidate;
 
 use App\Entity\Birthplace;
 use App\Entity\Candidate;
-use App\Entity\Country;
 use App\Entity\LegalizationDocument;
 use App\Forms\Candidate\CandidateType;
 use App\Repository\CandidateRepository;
@@ -14,7 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Translation\Translator;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -32,7 +30,7 @@ class CandidateController extends AbstractController
     {
         $candidates = $candidateRepository->findAll();
 
-        return $this->render('admin/candidate/index.html.twig',['candidates' => $candidates]);
+        return $this->render('admin/candidate/index.html.twig', ['candidates' => $candidates]);
     }
 
     /**
@@ -68,14 +66,19 @@ class CandidateController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new candidate with id '.$candidate->getId());
+        return new Response('Saved new candidate with id ' . $candidate->getId());
     }
 
     /**
      * @Route("/candidate/{id}/edit", methods="POST|GET", name="app_admin_candidate_edit")
      */
-    public function editCandidate($id, CandidateRepository $candidateRepository, ValidatorInterface $validator, Request $request, TranslatorInterface $translator)
-    {
+    public function editCandidate(
+        $id,
+        CandidateRepository $candidateRepository,
+        ValidatorInterface $validator,
+        Request $request,
+        TranslatorInterface $translator
+    ) {
         $candidate = $candidateRepository->findOneBy(['id' => $id]);
 
         $form = $this->createForm(CandidateType::class, $candidate);
@@ -84,7 +87,6 @@ class CandidateController extends AbstractController
             $form->submit($request->request->get($form->getName()));
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $this->getDoctrine()->getManager()->flush();
 
                 $this->addFlash(
@@ -92,16 +94,22 @@ class CandidateController extends AbstractController
                     $translator->trans('Your changes were saved!')
                 );
 
-                return $this->render('admin/candidate/edit.html.twig',[
-                    'form' => $form->createView(),
-                    'success_message' => 'Updated',
-                ]);
+                return $this->render(
+                    'admin/candidate/edit.html.twig',
+                    [
+                        'form' => $form->createView(),
+                        'success_message' => 'Updated',
+                    ]
+                );
             }
         }
 
-        return $this->render('admin/candidate/edit.html.twig',[
-            'form' => $form->createView(),
-        ]);
+        return $this->render(
+            'admin/candidate/edit.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
 
     /**
@@ -111,9 +119,12 @@ class CandidateController extends AbstractController
     {
         $candidate = $candidateRepository->findOneBy(['id' => $id]);
 
-        return $this->render('admin/candidate/show.html.twig',[
-            'candidate' => $candidate,
-        ]);
+        return $this->render(
+            'admin/candidate/show.html.twig',
+            [
+                'candidate' => $candidate,
+            ]
+        );
     }
 
     /**
@@ -138,6 +149,6 @@ class CandidateController extends AbstractController
         // actually executes the queries (i.e. the INSERT query)
         $entityManager->flush();
 
-        return new Response('Saved new lagalization document for candidat '.$candidate->getFirstname());
+        return new Response('Saved new lagalization document for candidat ' . $candidate->getFirstname());
     }
 }

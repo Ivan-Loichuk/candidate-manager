@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('security-login') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('security-login') }}
+{% endblock %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <div class="limiter">
+        <div class="container-login">
+            <div class="wrap-login">
+                <form class="login-form" method="post">
+					<span class="login-form-title">
+						<strong>{{ 'log in'|trans|capitalize }}</strong>
+					</span>
+
+                    <div class="wrap-input" >
+                        <input type="text" value="{{ last_username }}" name="login" id="inputLogin" class="form-control input100" required autofocus>
+                        <span class="focus-input" data-placeholder="{{ 'login'|trans|capitalize }}"></span>
+                    </div>
+
+                    <div class="wrap-input">
+                        <input type="password" name="password" id="inputPassword" class="form-control input100" required>
+                        <span class="focus-input" data-placeholder="{{ 'password'|trans|capitalize }}"></span>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                    <div class="container-login-form-btn">
+                        <button class="login-form-btn" type="submit">{{ 'login_action'|trans|capitalize }}</button>
+                    </div>
+
+                    {% if error %}
+                        <div class="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
