@@ -29,6 +29,12 @@ Encore
     .addEntry('admin-application', './assets/js/admin-panel/admin-application.js')
     .addEntry('security-login', './assets/js/security/login.js')
     .addEntry('admin-candidate', './assets/js/admin-panel/admin-candidate.js')
+    .addEntry('admin-vendor', [
+        './assets/js/admin-panel/admin-vendor.js',
+        './node_modules/jquery/dist/jquery.min.js',
+        './node_modules/bootstrap/dist/js/bootstrap.min.js',
+        './node_modules/flatpickr/dist/flatpickr.min.js'
+    ])
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
