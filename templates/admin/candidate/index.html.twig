@@ -1,5 +1,15 @@
 {% extends 'admin/base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('admin-candidate') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin-candidate') }}
+{% endblock %}
+
 {% block body %}
     <div class="content">
         <div class="container-fluid">
@@ -7,8 +17,14 @@
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
-                            <h4 class="card-title">{{ 'lista kandydatów'|trans|capitalize }}</h4>
-                            <p class="card-category"></p>
+                            <h4 class="card-title">{{ 'lista pracowników'|trans|capitalize }}</h4>
+                            <!-- Actual search box -->
+                            <form method="get">
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="search" class="form-control" name="q" placeholder="{{ 'search'|trans|capitalize }}">
+                                </div>
+                            </form>
                         </div>
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-hover table-striped">
@@ -21,7 +37,7 @@
                                     <th>{{ 'akcje'|trans|capitalize }}</th>
                                 </thead>
                                 <tbody>
-                                    {% for candidate in candidates %}
+                                    {% for candidate in pagination %}
                                         <tr>
                                             <td>{{ candidate.id }}</td>
                                             <td>{{ candidate.firstname }} {{ candidate.lastname }}</td>
@@ -40,6 +56,9 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="table-pagination">
+                            {{ knp_pagination_render(pagination) }}
                         </div>
                     </div>
                 </div>

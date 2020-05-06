@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Candidate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,44 @@ class CandidateRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Candidate::class);
+    }
+
+    /**
+     * @param string|null $term
+     * @return QueryBuilder
+     */
+    public function getWithSearchQueryBuilder(?string $term): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        if ($term) {
+            $qb->andWhere('c.firstname LIKE :term OR c.lastname LIKE :term')
+                ->setParameter('term', '%' . $term . '%')
+            ;
+        }
+
+        return $qb;
+    }
+
+    /**
+     * @param string|null $term
+     * @return int|mixed|string
+     */
+    public function findAllWithSearch(?string $term)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        if ($term) {
+            $qb->andWhere('c.firstname LIKE :term OR c.lastname LIKE :term')
+                ->setParameter('term', '%' . $term . '%')
+            ;
+        }
+
+        return $qb
+            ->orderBy('c.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**

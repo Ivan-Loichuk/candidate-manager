@@ -143,3 +143,22 @@
 .about-candidate {
     min-height: 150px;
 }
+/* Bootstrap 4 text input with search icon */
+
+.has-search {
+    margin-top: 1em;
+    .form-control {
+        padding-left: 2.375rem;
+    }
+    .form-control-feedback {
+        position: absolute;
+        z-index: 2;
+        display: block;
+        width: 2.375rem;
+        height: 2.375rem;
+        line-height: 2.375rem;
+        text-align: center;
+        pointer-events: none;
+        color: #aaa;
+    }
+}

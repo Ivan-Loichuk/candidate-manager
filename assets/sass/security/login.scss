@@ -49,7 +49,7 @@ button:hover {
 
 .container-login{
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -233,6 +233,12 @@ button:hover {
   .alert {
     color: red;
     margin: 20px 0px;
+  }
+}
+
+@media (max-width: 680px){
+  .limiter .container-login {
+    min-height: 60vh;
   }
 }
 

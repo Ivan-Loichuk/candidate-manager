@@ -9,6 +9,7 @@ use App\Forms\Candidate\CandidateType;
 use App\Repository\CandidateRepository;
 use App\Repository\CountryRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,11 +27,20 @@ class CandidateController extends AbstractController
     /**
      * @Route("/candidates", name="app_admin_candidates")
      */
-    public function admin(CandidateRepository $candidateRepository)
+    public function getCandidates(CandidateRepository $candidateRepository, Request $request,  PaginatorInterface $paginator)
     {
-        $candidates = $candidateRepository->findAll();
+        $q = $request->query->get('q');
+        $queryBuilder = $candidateRepository->getWithSearchQueryBuilder($q);
 
-        return $this->render('admin/candidate/index.html.twig', ['candidates' => $candidates]);
+        $pagination = $paginator->paginate(
+            $queryBuilder,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('admin/candidate/index.html.twig', [
+            'pagination' => $pagination,
+        ]);
     }
 
     /**

@@ -14,19 +14,10 @@
 import '../../sass/light-bootstrap-dashboard.scss';
 import $ from 'jquery';
 
-var searchVisible = 0;
-var transparent = true;
-
-var transparentDemo = true;
-var fixedTop = false;
-
-var navbar_initialized = false;
 var mobile_menu_visible = 0,
     mobile_menu_initialized = false,
     toggle_initialized = false,
-    bootstrap_nav_initialized = false,
-    $sidebar,
-    isWindows;
+    $sidebar;
 
 var lbd = {
     misc: {
@@ -73,8 +64,8 @@ var lbd = {
 
             // insert the navbar form before the sidebar list
             var $nav_content = $(nav_content);
-            $nav_content.insertBefore($sidebar_nav);
-            $navbar_form.insertBefore($nav_content);
+            $nav_content.insertAfter($sidebar_nav);
+            $navbar_form.insertBefore($sidebar_nav);
 
             $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function(event) {
                 event.stopPropagation();
@@ -83,7 +74,6 @@ var lbd = {
 
             mobile_menu_initialized = true;
         } else {
-            console.log('window with:' + $(window).width());
             if ($(window).width() > 991) {
                 // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px
                 $sidebar_wrapper.find('.navbar-form').remove();
@@ -157,9 +147,6 @@ $(document).ready(function() {
         lbd.initRightMenu();
     }
 
-    //  Activate the tooltips
-    //$('[rel="tooltip"]').tooltip();
-
     //      Activate regular switches
     if ($("[data-toggle='switch']").length != 0) {
         $("[data-toggle='switch']").bootstrapSwitch();
@@ -183,24 +170,3 @@ $(window).resize(function() {
         lbd.initRightMenu();
     }
 });
-
-
-
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
-// leading edge, instead of the trailing.
-
-function debounce(func, wait, immediate) {
-    var timeout;
-    return function() {
-        var context = this,
-            args = arguments;
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        }, wait);
-        if (immediate && !timeout) func.apply(context, args);
-    };
-};

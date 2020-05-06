@@ -18,7 +18,6 @@
 
     .navbar-brand {
         font-weight: 400;
-        margin: 5px 0px;
         font-size: 20px;
         color: $default-color;
 
@@ -26,16 +25,17 @@
             color: #5e5e5e;
         }
     }
-    .navbar-toggler{
+    .navbar-toggler {
         width: 37px;
         height: 27px;
         vertical-align: middle;
         outline: 0;
         cursor: pointer;
 
-        &.navbar-toggler-left{
+        &.navbar-toggler-left {
             position: relative;
             left: 0;
+            top: 0px;
             bottom: 15px;
             padding: 5px;
             padding-bottom: 25px;

@@ -28,6 +28,7 @@ Encore
     .addEntry('profile-page', './assets/js/admin-panel/profile-page.js')
     .addEntry('admin-application', './assets/js/admin-panel/admin-application.js')
     .addEntry('security-login', './assets/js/security/login.js')
+    .addEntry('admin-candidate', './assets/js/admin-panel/admin-candidate.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
