@@ -2,38 +2,32 @@
     <div class="sidebar-wrapper">
         <div class="logo">
             <a class="simple-text">
-                {{ 'HR manager'|trans|capitalize }}
+                {{ 'agencja pracy'|trans|capitalize }}
             </a>
         </div>
         <ul class="nav">
-            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_dashboard' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('app_admin_dashboard') }}">
-                    <i class="nc-icon nc-chart-pie-35"></i>
-                    <p> {{ 'strona główna'|trans|capitalize }}</p>
-                </a>
-            </li>
-            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_candidates' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('app_admin_candidates') }}">
+{#            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_dashboard' %}active{% endif %}">#}
+{#                <a class="nav-link" href="{{ path('app_admin_dashboard') }}">#}
+{#                    <i class="nc-icon nc-chart-pie-35"></i>#}
+{#                    <p> {{ 'strona główna'|trans|capitalize }}</p>#}
+{#                </a>#}
+{#            </li>#}
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_employees' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('app_admin_employees') }}">
                     <i class="nc-icon nc-circle-09"></i>
                     <p> {{ 'pracowniki'|trans|capitalize }}</p>
                 </a>
             </li>
-            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_offers' %}active{% endif %}">
-                <a class="nav-link" href="admin/offers">
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_companies' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('app_admin_companies') }}">
                     <i class="nc-icon nc-notes"></i>
                     <p>{{ 'firmy'|trans|capitalize }}</p>
                 </a>
             </li>
-            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_mailer' %}active{% endif %}">
-                <a class="nav-link" href="/admin/mailer">
+            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_vehicles' %}active{% endif %}">
+                <a class="nav-link" href="{{ path('app_admin_vehicles') }}">
                     <i class="nc-icon nc-pin-3"></i>
-                    <p>Mailer</p>
-                </a>
-            </li>
-            <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_applications' %}active{% endif %}">
-                <a class="nav-link" href="/admin/applications">
-                    <i class="nc-icon nc-bell-55"></i>
-                    <p>New applications</p>
+                    <p>Samochody firmowe</p>
                 </a>
             </li>
         </ul>

@@ -3,7 +3,7 @@
 namespace App\Form\Candidate;
 
 use App\Entity\Birthplace;
-use App\Entity\Candidate;
+use App\Entity\Employee;
 use App\Entity\Country;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

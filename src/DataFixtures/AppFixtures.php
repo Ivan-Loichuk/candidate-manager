@@ -9,19 +9,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-    use CountryTrait;
-
     public function load(ObjectManager $manager)
     {
-        foreach ($this->countries as $country) {
-            $newCountry = new Country();
-            $newCountry->setName($country['name']);
-            $newCountry->setIso($country['iso']);
-            $newCountry->setNicename($country['nicename']);
-            $newCountry->setPhonecode($country['phonecode']);
-            $manager->persist($newCountry);
-        }
 
-        $manager->flush();
     }
 }

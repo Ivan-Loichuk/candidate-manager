@@ -4,7 +4,7 @@
 namespace App\Forms\Candidate;
 
 
-use App\Entity\Candidate;
+use App\Entity\Employee;
 use App\Form\Candidate\BirthplaceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -94,7 +94,7 @@ class CandidateType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'form-control js-datepicker',
-                    'type' => 'date'
+                    'type' => 'text'
                 ],
             ])
             ->add('update_profile', SubmitType::class, [
@@ -108,7 +108,7 @@ class CandidateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Candidate::class,
+            'data_class' => Employee::class,
         ]);
     }
 }
