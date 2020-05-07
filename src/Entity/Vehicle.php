@@ -48,6 +48,11 @@ class Vehicle
      */
     private $oilChangeMileage;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $createdDate;
+
     public function __construct()
     {
         $this->vehicleMileage = new ArrayCollection();
@@ -145,6 +150,18 @@ class Vehicle
     public function setOilChangeMileage(?int $oilChangeMileage): self
     {
         $this->oilChangeMileage = $oilChangeMileage;
+
+        return $this;
+    }
+
+    public function getCreatedDate(): ?\DateTimeInterface
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(\DateTimeInterface $createdDate): self
+    {
+        $this->createdDate = $createdDate;
 
         return $this;
     }

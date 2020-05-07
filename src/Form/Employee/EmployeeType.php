@@ -1,24 +1,21 @@
 <?php
 
 
-namespace App\Form\Candidate;
+namespace App\Form\Employee;
+
 
 use App\Entity\Employee;
-use App\Form\Candidate\BirthplaceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CandidateType extends AbstractType
+class EmployeeType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('firstname', TextType::class, [
                 'required'   => true,
@@ -32,36 +29,6 @@ class CandidateType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('email', TextType::class, [
-                'required'   => false,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('phoneNumber', TextType::class, [
-                'required'   => false,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('viber', TextType::class, [
-                'required'   => false,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('skype', TextType::class, [
-                'required'   => false,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('profession', TextType::class, [
-                'required'   => false,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
             ->add('gender', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -71,29 +38,34 @@ class CandidateType extends AbstractType
                     'FEMALE' => 'FEMALE',
                 ]
             ])
-            ->add('aboutCandidate', TextareaType::class, [
-                'required'   => false,
-                'attr' => [
-                    'class' => 'form-control about-candidate',
-                ],
-            ])
-            ->add('birthplace', BirthplaceType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('nationality', TextType::class, [
-                'required'   => true,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
             ->add('dateOfBirth', DateType::class, [
-                'required'   => true,
+                'required'   => false,
                 'widget' => 'single_text',
                 'attr' => [
                     'class' => 'form-control js-datepicker',
                     'type' => 'text'
+                ],
+            ])
+            ->add('dateOfArrival', DateType::class, [
+                'required'   => false,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control js-datepicker',
+                    'type' => 'text'
+                ],
+            ])
+            ->add('dateOfDeparture', DateType::class, [
+                'required'   => false,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control js-datepicker',
+                    'type' => 'text'
+                ],
+            ])
+            ->add('contact', ContactType::class, [
+                'required'   => false,
+                'attr' => [
+                    'class' => 'form-control',
                 ],
             ])
             ->add('update_profile', SubmitType::class, [

@@ -27,7 +27,7 @@ class PhoneNumber
     private $countryCode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Contact", inversedBy="telefon")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Contact", inversedBy="phoneNumber")
      */
     private $contact;
 

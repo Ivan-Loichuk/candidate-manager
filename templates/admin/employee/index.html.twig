@@ -2,12 +2,12 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('admin-candidate') }}
+    {{ encore_entry_script_tags('admin-employee') }}
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
-    {{ encore_entry_link_tags('admin-candidate') }}
+    {{ encore_entry_link_tags('admin-employee') }}
 {% endblock %}
 
 {% block body %}
@@ -31,18 +31,24 @@
                                 <thead>
                                     <th>ID</th>
                                     <th>{{ 'imię'|trans|capitalize }}</th>
+                                    <th>{{ 'data przyjazdu'|trans|capitalize }}</th>
+                                    <th>{{ 'data wyjazdu'|trans|capitalize }}</th>
+                                    <th>{{ 'baxUA'|trans|capitalize }}</th>
                                     <th>{{ 'akcje'|trans|capitalize }}</th>
                                 </thead>
                                 <tbody>
-                                {% for candidate in pagination %}
+                                {% for employee in pagination %}
                                     <tr>
-                                        <td>{{ candidate.id }}</td>
-                                        <td>{{ candidate.firstname }} {{ candidate.lastname }}</td>
+                                        <td>{{ employee.id }}</td>
+                                        <td>{{ employee.firstname }} {{ employee.lastname }}</td>
+                                        <td>{{ employee.dateOfArrival|date("m-d-Y") }}</td>
+                                        <td>{{ employee.dateOfDeparture|date("m-d-Y") }}</td>
+                                        <td>{{ employee.baxtUA }}</td>
                                         <td>
-                                            <a href="{{ path('app_admin_candidate_show', {id: candidate.id}) }}" title="{{ 'show candidate'|trans|capitalize }}" class="icon-link">
+                                            <a href="{{ path('app_admin_employee_show', {id: employee.id}) }}" title="{{ 'show candidate'|trans|capitalize }}" class="icon-link">
                                                 <i class="fas fa-eye fa-lg"></i>
                                             </a>
-                                            <a href="{{ path('app_admin_candidate_edit', {id: candidate.id}) }}" title="{{ 'edit candidate'|trans|capitalize }}" class="icon-link">
+                                            <a href="{{ path('app_admin_employee_show', {id: employee.id}) }}" title="{{ 'edit candidate'|trans|capitalize }}" class="icon-link">
                                                 <i class="fas fa-edit fa-lg"></i>
                                             </a>
                                         </td>

@@ -28,6 +28,11 @@ class Company
      */
     private $employee;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $createdDate;
+
     public function __construct()
     {
         $this->employee = new ArrayCollection();
@@ -77,6 +82,18 @@ class Company
                 $employee->setCompany(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedDate(): ?\DateTimeInterface
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(\DateTimeInterface $createdDate): self
+    {
+        $this->createdDate = $createdDate;
 
         return $this;
     }

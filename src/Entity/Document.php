@@ -32,6 +32,11 @@ class Document
      */
     private $employee;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $createdDate;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Document
     public function setEmployee(?Employee $employee): self
     {
         $this->employee = $employee;
+
+        return $this;
+    }
+
+    public function getCreatedDate(): ?\DateTimeInterface
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(\DateTimeInterface $createdDate): self
+    {
+        $this->createdDate = $createdDate;
 
         return $this;
     }

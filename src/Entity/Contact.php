@@ -29,13 +29,13 @@ class Contact
     private $viber;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PhoneNumber", mappedBy="contact")
+     * @ORM\OneToMany(targetEntity="App\Entity\PhoneNumber", mappedBy="contact", cascade={"persist"})
      */
-    private $telefon;
+    private $phoneNumber;
 
     public function __construct()
     {
-        $this->telefon = new ArrayCollection();
+        $this->phoneNumber = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -70,28 +70,28 @@ class Contact
     /**
      * @return Collection|PhoneNumber[]
      */
-    public function getTelefon(): Collection
+    public function getPhoneNumber(): Collection
     {
-        return $this->telefon;
+        return $this->phoneNumber;
     }
 
-    public function addTelefon(PhoneNumber $telefon): self
+    public function addPhoneNumber(PhoneNumber $phoneNumber): self
     {
-        if (!$this->telefon->contains($telefon)) {
-            $this->telefon[] = $telefon;
-            $telefon->setContact($this);
+        if (!$this->phoneNumber->contains($phoneNumber)) {
+            $this->phoneNumber[] = $phoneNumber;
+            $phoneNumber->setContact($this);
         }
 
         return $this;
     }
 
-    public function removeTelefon(PhoneNumber $telefon): self
+    public function removePhoneNumber(PhoneNumber $phoneNumber): self
     {
-        if ($this->telefon->contains($telefon)) {
-            $this->telefon->removeElement($telefon);
+        if ($this->phoneNumber->contains($phoneNumber)) {
+            $this->phoneNumber->removeElement($phoneNumber);
             // set the owning side to null (unless already changed)
-            if ($telefon->getContact() === $this) {
-                $telefon->setContact(null);
+            if ($phoneNumber->getContact() === $this) {
+                $phoneNumber->setContact(null);
             }
         }
 

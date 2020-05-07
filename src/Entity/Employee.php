@@ -36,12 +36,17 @@ class Employee
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $dateOfDepature;
+    private $dateOfArrival;
 
     /**
-     * @ORM\Column(type="string", length=80, nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
-    private $baxUA;
+    private $dateOfDeparture;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $baxtUA;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -98,6 +103,16 @@ class Employee
      */
     private $company;
 
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdDate;
+
     public function __construct()
     {
         $this->visa = new ArrayCollection();
@@ -147,30 +162,6 @@ class Employee
     public function setDateOfBirth(?\DateTimeInterface $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
-
-        return $this;
-    }
-
-    public function getDateOfDepature(): ?\DateTimeInterface
-    {
-        return $this->dateOfDepature;
-    }
-
-    public function setDateOfDepature(?\DateTimeInterface $dateOfDepature): self
-    {
-        $this->dateOfDepature = $dateOfDepature;
-
-        return $this;
-    }
-
-    public function getBaxUA(): ?string
-    {
-        return $this->baxUA;
-    }
-
-    public function setBaxUA(?string $baxUA): self
-    {
-        $this->baxUA = $baxUA;
 
         return $this;
     }
@@ -455,6 +446,66 @@ class Employee
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?string $gender): self
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getDateOfArrival(): ?\DateTimeInterface
+    {
+        return $this->dateOfArrival;
+    }
+
+    public function setDateOfArrival(?\DateTimeInterface $dateOfArrival): self
+    {
+        $this->dateOfArrival = $dateOfArrival;
+
+        return $this;
+    }
+
+    public function getDateOfDeparture(): ?\DateTimeInterface
+    {
+        return $this->dateOfDeparture;
+    }
+
+    public function setDateOfDeparture(?\DateTimeInterface $dateOfDeparture): self
+    {
+        $this->dateOfDeparture = $dateOfDeparture;
+
+        return $this;
+    }
+
+    public function getBaxtUA(): ?string
+    {
+        return $this->baxtUA;
+    }
+
+    public function setBaxtUA(?string $baxtUA): self
+    {
+        $this->baxtUA = $baxtUA;
+
+        return $this;
+    }
+
+    public function getCreatedDate(): ?\DateTimeInterface
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(\DateTimeInterface $createdDate): self
+    {
+        $this->createdDate = $createdDate;
 
         return $this;
     }

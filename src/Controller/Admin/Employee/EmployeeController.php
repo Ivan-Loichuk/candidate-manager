@@ -5,6 +5,7 @@ namespace App\Controller\Admin\Employee;
 
 
 use App\Entity\Employee;
+use App\Form\Employee\EmployeeType;
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class EmployeeController
@@ -40,19 +42,34 @@ class EmployeeController extends AbstractController
     }
 
     /**
-     * @Route("/employee", name="app_create_employee")
+     * @Route("/employee/add", name="app_create_employee")
      */
-    public function createEmployee(EntityManagerInterface $entityManager): Response
+    public function createEmployee(EntityManagerInterface $entityManager, Request $request, TranslatorInterface $translator): Response
     {
         $employee = new Employee();
+        $form = $this->createForm(EmployeeType::class, $employee);
 
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($employee);
+        if ($request->isMethod('POST')) {
+            $form->submit($request->request->get($form->getName()));
 
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $employee = $form->getData();
+                $this->getDoctrine()->getManager()->persist($employee);
+                $this->getDoctrine()->getManager()->flush();
 
-        return new Response('Saved new employee with id ' . $employee->getId());
+                $this->addFlash(
+                    'success',
+                    $translator->trans('Your changes were saved!')
+                );
+            }
+        }
+
+        return $this->render(
+            'admin/employee/add.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
 
 
@@ -66,7 +83,7 @@ class EmployeeController extends AbstractController
         return $this->render(
             'admin/employee/show.html.twig',
             [
-                'candidate' => $employee,
+                'employee' => $employee,
             ]
         );
     }
