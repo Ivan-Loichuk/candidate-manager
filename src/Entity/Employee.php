@@ -54,17 +54,12 @@ class Employee
     private $pipAplicationDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Visa", mappedBy="employee", orphanRemoval=true)
-     */
-    private $visa;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ResidenceCard", mappedBy="employee", orphanRemoval=true)
      */
     private $residenceCard;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Passport", mappedBy="employee", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Passport", mappedBy="employee", orphanRemoval=true, cascade={"persist"})
      */
     private $passport;
 
@@ -115,7 +110,6 @@ class Employee
 
     public function __construct()
     {
-        $this->visa = new ArrayCollection();
         $this->residenceCard = new ArrayCollection();
         $this->passport = new ArrayCollection();
         $this->contract = new ArrayCollection();
@@ -123,6 +117,8 @@ class Employee
         $this->safetyTraining = new ArrayCollection();
         $this->delegationList = new ArrayCollection();
         $this->document = new ArrayCollection();
+
+        $this->setCreatedDate(new \DateTime('now'));
     }
 
     public function getId(): ?int
@@ -174,37 +170,6 @@ class Employee
     public function setPipAplicationDate(?\DateTimeInterface $pipAplicationDate): self
     {
         $this->pipAplicationDate = $pipAplicationDate;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Visa[]
-     */
-    public function getVisa(): Collection
-    {
-        return $this->visa;
-    }
-
-    public function addVisa(Visa $visa): self
-    {
-        if (!$this->visa->contains($visa)) {
-            $this->visa[] = $visa;
-            $visa->setEmployee($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVisa(Visa $visa): self
-    {
-        if ($this->visa->contains($visa)) {
-            $this->visa->removeElement($visa);
-            // set the owning side to null (unless already changed)
-            if ($visa->getEmployee() === $this) {
-                $visa->setEmployee(null);
-            }
-        }
 
         return $this;
     }

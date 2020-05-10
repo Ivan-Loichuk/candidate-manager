@@ -20,5 +20,15 @@ $(document).ready(function () {
         // create a new list element and add it to the list
         var newElem = $(list.attr('data-widget-tags')).html(newWidget);
         newElem.appendTo(list);
+        initRemoveButtons();
     });
+
+    initRemoveButtons();
 });
+
+function initRemoveButtons() {
+    $('.js-remove-collection').on('click', function(e) {
+        e.preventDefault();
+        $(this).closest('.js-collection').remove();
+    });
+}

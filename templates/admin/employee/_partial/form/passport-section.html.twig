@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">{{ 'Paszporty'|trans|capitalize }}</h4>
+    </div>
+    <div class="card-body">
+        <div id="passport-fields-list" class="list-group"
+             data-prototype="{{ _self.tagCollectionItem(form.passport.vars.prototype)|e }}"
+             data-widget-tags="{{ '<div class="row js-collection"></div>'|e }}"
+             data-widget-counter="{{ form.passport|length }}">
+            {% if form.passport|length > 0 %}
+                {% for passportField in form.passport %}
+                    <div class="row js-collection">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <div class="form-group">
+                                <label for="candidate_firstname">{{ 'Typ paszportu'|trans }}</label>
+                                {{ form_widget(passportField.type) }}
+                                <div class="errors">
+                                    {{ form_errors(passportField.type) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 remove-collection-wrapper">
+                            <div class="form-group">
+                                <label for="candidate_lastname">{{ 'numer paszportu'|trans }}</label>
+                                {{ form_widget(passportField.number) }}
+                                <div class="errors">
+                                    {{ form_errors(passportField.number) }}
+                                </div>
+                            </div>
+                            <a href="#" class="js-remove-collection pull-right">
+                                <span class="fa fa-close"></span>
+                            </a>
+                        </div>
+                    </div>
+                    {% macro tagCollectionItem(formData) %}
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <div class="form-group">
+                                <label for="candidate_firstname">{{ 'rodzaj'|trans }}</label>
+                                {{ form_widget(formData.type) }}
+                                <div class="errors">
+                                    {{ form_errors(formData.type) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 remove-collection-wrapper">
+                            <div class="form-group w-100">
+                                <label for="candidate_lastname">{{ 'numer'|trans }}</label>
+                                {{ form_widget(formData.number) }}
+                                <div class="errors">
+                                    {{ form_errors(formData.number) }}
+                                </div>
+                            </div>
+                            <a href="#" class="js-remove-collection pull-right">
+                                <span class="fa fa-close"></span>
+                            </a>
+                        </div>
+                    {% endmacro %}
+                {% endfor %}
+            {% else %}
+
+            {% endif %}
+        </div>
+
+        <a type="button"
+           class="add-another-collection-widget"
+           data-list-selector="#passport-fields-list">{{ 'dodaj nowy passport'|trans|capitalize }}</a>
+    </div>
+</div>

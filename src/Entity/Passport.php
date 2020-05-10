@@ -39,9 +39,15 @@ class Passport
      */
     private $number;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Visa", mappedBy="passport", orphanRemoval=true)
+     */
+    private $visas;
+
     public function __construct()
     {
         $this->passportStamp = new ArrayCollection();
+        $this->visas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -112,6 +118,37 @@ class Passport
     public function setNumber(?string $number): self
     {
         $this->number = $number;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Visa[]
+     */
+    public function getVisas(): Collection
+    {
+        return $this->visas;
+    }
+
+    public function addVisa(Visa $visa): self
+    {
+        if (!$this->visas->contains($visa)) {
+            $this->visas[] = $visa;
+            $visa->setPassport($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisa(Visa $visa): self
+    {
+        if ($this->visas->contains($visa)) {
+            $this->visas->removeElement($visa);
+            // set the owning side to null (unless already changed)
+            if ($visa->getPassport() === $this) {
+                $visa->setPassport(null);
+            }
+        }
 
         return $this;
     }

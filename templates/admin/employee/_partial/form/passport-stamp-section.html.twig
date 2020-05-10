@@ -1,0 +1,62 @@
+{% macro tagCollectionItem(formData) %}
+    <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="form-group">
+            <label for="candidate_firstname">{{ 'data przyjazdu'|trans }}</label>
+            {{ form_widget(formData.dateOfArrival) }}
+            <div class="errors">
+                {{ form_errors(formData.dateOfArrival) }}
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9 remove-collection-wrapper">
+        <div class="form-group w-100">
+            <label for="candidate_lastname">{{ 'date wyjazdu'|trans }}</label>
+            {{ form_widget(formData.dateOfDeparture) }}
+            <div class="errors">
+                {{ form_errors(formData.dateOfDeparture) }}
+            </div>
+        </div>
+        <a href="#" class="js-remove-collection pull-right">
+            <span class="fa fa-close"></span>
+        </a>
+    </div>
+{% endmacro %}
+
+<div id="passport-stamp-fields-list" class="list-group"
+     data-prototype="{{ _self.tagCollectionItem(passportStamp.vars.prototype)|e }}"
+     data-widget-tags="{{ '<div class="row js-collection"></div>'|e }}"
+     data-widget-counter="{{ passportStamp|length }}">
+    {% if passportStamp|length > 0 %}
+        {% for stamp in passportStamp %}
+            <div class="row js-collection">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="form-group">
+                        <label for="candidate_firstname">{{ 'data przyjazdu'|trans }}</label>
+                        {{ form_widget(stamp.dateOfArrival) }}
+                        <div class="errors">
+                            {{ form_errors(stamp.dateOfArrival) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 remove-collection-wrapper">
+                    <div class="form-group w-100">
+                        <label for="candidate_lastname">{{ 'date wyjazdu'|trans }}</label>
+                        {{ form_widget(stamp.dateOfDeparture) }}
+                        <div class="errors">
+                            {{ form_errors(stamp.dateOfDeparture) }}
+                        </div>
+                    </div>
+                    <a href="#" class="js-remove-collection pull-right">
+                        <span class="fa fa-close"></span>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        {{ form_widget(passportStamp) }}
+    {% endif %}
+</div>
+
+<a type="button"
+   class="add-another-collection-widget"
+   data-list-selector="#passport-stamp-fields-list">{{ 'dodaj wjazd/wyjazd'|trans|capitalize }}</a>

@@ -2,3 +2,4 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     paths:
         '%kernel.project_dir%/templates/admin/_partial': common_admin_tpl
+        '%kernel.project_dir%/templates/admin/employee': admin_employee_tpl

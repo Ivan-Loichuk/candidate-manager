@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">{{ 'podstawowe dane'|trans|capitalize }}</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="candidate_firstname">{{ 'imię'|trans }}</label>
+                    {{ form_widget(form.firstname) }}
+                    <div class="errors">
+                        {{ form_errors(form.firstname) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="candidate_lastname">{{ 'nazwisko'|trans }}</label>
+                    {{ form_widget(form.lastname) }}
+                    <div class="errors">
+                        {{ form_errors(form.lastname) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="candidate_gender">{{ 'płeć'|trans }}</label>
+                    {{ form_widget(form.gender) }}
+                    <div class="errors">
+                        {{ form_errors(form.gender) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="candidate_nationality">{{ 'data urodzenia'|trans }}</label>
+                    {{ form_widget(form.dateOfBirth) }}
+                    <div class="errors">
+                        {{ form_errors(form.dateOfBirth) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="candidate_gender">{{ 'data przyjazdu'|trans|capitalize }}</label>
+                    {{ form_widget(form.dateOfArrival) }}
+                    <div class="errors">
+                        {{ form_errors(form.dateOfArrival) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label>{{ 'data wyjazdu'|trans|capitalize }}</label>
+                    {{ form_widget(form.dateOfDeparture) }}
+                    <div class="errors">
+                        {{ form_errors(form.dateOfDeparture) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

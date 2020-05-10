@@ -32,6 +32,11 @@ class PassportStamp
      */
     private $passport;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Visa", inversedBy="passportStamp")
+     */
+    private $visa;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class PassportStamp
     public function setPassport(?Passport $passport): self
     {
         $this->passport = $passport;
+
+        return $this;
+    }
+
+    public function getVisa(): ?Visa
+    {
+        return $this->visa;
+    }
+
+    public function setVisa(?Visa $visa): self
+    {
+        $this->visa = $visa;
 
         return $this;
     }

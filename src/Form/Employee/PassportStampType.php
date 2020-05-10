@@ -4,15 +4,13 @@
 namespace App\Form\Employee;
 
 
-use App\Entity\Contact;
+use App\Entity\PassportStamp;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactType extends AbstractType
+class PassportStampType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,24 +19,17 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, [
+            ->add('dateOfDeparture', DateType::class, [
                 'required'   => false,
                 'attr' => [
                     'class' => 'form-control'
                 ],
             ])
-            ->add('viber', TextType::class, [
+            ->add('dateOfArrival', DateType::class, [
                 'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
-            ])
-            ->add('phoneNumber', CollectionType::class, [
-                'entry_type' => PhoneNumberType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'delete_empty' => true,
-                'allow_delete' => true,
             ])
         ;
     }
@@ -49,7 +40,7 @@ class ContactType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Contact::class,
+            'data_class' => PassportStamp::class,
         ]);
     }
 }

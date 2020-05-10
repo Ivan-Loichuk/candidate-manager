@@ -5,8 +5,49 @@
   }
 }
 
+.employee-list .add-employee-btn {
+  box-shadow:inset 0px 1px 0px 0px #97c4fe;
+  border-radius:6px;
+  border:1px solid #337fed;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:16px;
+  padding: 5px 20px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #1570cd;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+
+  &:hover {
+    background-color:#1e62d0;
+  }
+  &:active {
+    background-color:#1e62d0;
+    top: 9px;
+  }
+}
+
 .add-another-collection-widget {
   float: right;
   font-size: 14px;
   color: #00a1ff!important;
+}
+
+.remove-collection-wrapper {
+  display: inline-flex;
+  .js-remove-collection {
+    height: 25px;
+    margin-top: 35px;
+    width: 25px;
+    padding-left: 10px;
+  }
+  .form-group {
+    width: 100%;
+  }
+}
+#employee_passport {
+  display: none;
 }

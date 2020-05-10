@@ -8,7 +8,6 @@
   &:active,
   &.active,
   .open > &.dropdown-toggle {
-    background-color: $transparent-bg;
     color: $btn-states-color;
     border-color: $btn-states-color;
   }
@@ -23,8 +22,7 @@
     &.focus,
     &:active,
     &.active {
-      background-color: $transparent-bg;
-          border-color: $btn-color;
+      border-color: $btn-color;
     }
   }
   

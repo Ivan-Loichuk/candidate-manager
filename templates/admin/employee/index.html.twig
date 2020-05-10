@@ -11,13 +11,19 @@
 {% endblock %}
 
 {% block body %}
-    <div class="content">
+    <div class="content employee-list">
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    {% include '@common_admin_tpl/flashes.html.twig' %}
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
                             <h4 class="card-title">{{ 'lista pracowników'|trans|capitalize }}</h4>
+                            <button type="button" class="btn-primary add-employee-btn" data-toggle="modal" data-target="#add-employee">{{ 'dodaj pracownika'|trans|capitalize }}</button>
                             <!-- Actual search box -->
                             <form method="get">
                                 <div class="form-group has-search">
@@ -41,9 +47,9 @@
                                     <tr>
                                         <td>{{ employee.id }}</td>
                                         <td>{{ employee.firstname }} {{ employee.lastname }}</td>
-                                        <td>{{ employee.dateOfArrival|date("m-d-Y") }}</td>
-                                        <td>{{ employee.dateOfDeparture|date("m-d-Y") }}</td>
-                                        <td>{{ employee.baxtUA }}</td>
+                                        <td>{{ employee.dateOfArrival is empty ? "-" : employee.dateOfArrival|date("m-d-Y") }}</td>
+                                        <td>{{ employee.dateOfDeparture is empty ? "-" : employee.dateOfDeparture|date("m-d-Y") }}</td>
+                                        <td>{{ employee.baxtUA is empty ? "-" : employee.baxtUA}}</td>
                                         <td>
                                             <a href="{{ path('app_admin_employee_show', {id: employee.id}) }}" title="{{ 'show candidate'|trans|capitalize }}" class="icon-link">
                                                 <i class="fas fa-eye fa-lg"></i>
@@ -65,4 +71,6 @@
             </div>
         </div>
     </div>
+
+    {% include '@admin_employee_tpl/_partial/modal/add-employee.html.twig' %}
 {% endblock %}
