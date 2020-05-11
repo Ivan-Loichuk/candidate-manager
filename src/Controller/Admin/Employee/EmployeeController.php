@@ -4,8 +4,9 @@
 namespace App\Controller\Admin\Employee;
 
 
-use App\Entity\Employee;
-use App\Form\Employee\EmployeeType;
+use App\Form\Employee\GeneralEmployeeType;
+use App\Form\Employee\JobDocumentsType;
+use App\Form\Employee\LegalizationEmployeeType;
 use App\Form\Employee\SimpleEmployeeType;
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,10 +24,24 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class EmployeeController extends AbstractController
 {
+    private $entityManager;
+    private $translator;
+
+    function __construct(EntityManagerInterface $entityManager, TranslatorInterface $translator)
+    {
+        $this->entityManager = $entityManager;
+        $this->translator = $translator;
+    }
+
     /**
      * @Route("/employees", name="app_admin_employees")
+     * @param EmployeeRepository $employeeRepository
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param TranslatorInterface $translator
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function getEmployees(EmployeeRepository $employeeRepository, Request $request,  PaginatorInterface $paginator, TranslatorInterface $translator)
+    public function getEmployees(EmployeeRepository $employeeRepository, Request $request,  PaginatorInterface $paginator)
     {
         $q = $request->query->get('q');
         $queryBuilder = $employeeRepository->getWithSearchQueryBuilder($q);
@@ -44,12 +59,12 @@ class EmployeeController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $employee = $form->getData();
-                $this->getDoctrine()->getManager()->persist($employee);
-                $this->getDoctrine()->getManager()->flush();
+                $this->entityManager->persist($employee);
+                $this->entityManager->flush();
 
                 $this->addFlash(
                     'success',
-                    $translator->trans('Nowy pracownik został dodany')
+                    $this->translator->trans('Nowy pracownik został dodany')
                 );
 
                 return $this->redirectToRoute('app_employee_edit', [
@@ -66,38 +81,62 @@ class EmployeeController extends AbstractController
 
     /**
      * @Route("/employee/{id}/edit", name="app_employee_edit")
+     * @param $id
+     * @param EmployeeRepository $employeeRepository
+     * @param Request $request
+     * @return Response
      */
-    public function createEmployee($id, EmployeeRepository $employeeRepository, EntityManagerInterface $entityManager, Request $request, TranslatorInterface $translator): Response
+    public function createEmployee($id, EmployeeRepository $employeeRepository, Request $request): Response
     {
         $employee = $employeeRepository->findOneBy(['id' => $id]);
-        $form = $this->createForm(EmployeeType::class, $employee);
+
+        $generalForm = $this->createForm(GeneralEmployeeType::class, $employee);
+        $legalizationForm = $this->createForm(LegalizationEmployeeType::class, $employee);
+        $jobDocumentsForm = $this->createForm(JobDocumentsType::class, $employee);
 
         if ($request->isMethod('POST')) {
-            $form->submit($request->request->get($form->getName()));
+            $generalForm->handleRequest($request);
+            $this->saveIfFormSubmitted($generalForm);
 
-            if ($form->isSubmitted() && $form->isValid()) {
-                $employee = $form->getData();
-                $this->getDoctrine()->getManager()->persist($employee);
-                $this->getDoctrine()->getManager()->flush();
+            $legalizationForm->handleRequest($request);
+            $this->saveIfFormSubmitted($legalizationForm);
 
-                $this->addFlash(
-                    'success',
-                    $translator->trans('Your changes were saved!')
-                );
-            }
+            $jobDocumentsForm->handleRequest($request);
+            $this->saveIfFormSubmitted($jobDocumentsForm);
         }
 
         return $this->render(
-            'admin/employee/add.html.twig',
+            'admin/employee/edit.html.twig',
             [
-                'form' => $form->createView(),
+                'generalForm' => $generalForm->createView(),
+                'legalizationForm' => $legalizationForm->createView(),
+                'jobDocumentsForm' => $jobDocumentsForm->createView(),
             ]
         );
+    }
+
+    /**
+     * @param $form
+     */
+    private function saveIfFormSubmitted($form): void
+    {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $employee = $form->getData();
+            $this->entityManager->persist($employee);
+            $this->addFlash(
+                'success',
+                $this->translator->trans('Dane zostały zapisane!')
+            );
+            $this->entityManager->flush();
+        }
     }
 
 
     /**
      * @Route("/employee/{id}/show", methods="GET", name="app_admin_employee_show")
+     * @param $id
+     * @param EmployeeRepository $employeeRepository
+     * @return Response
      */
     public function showCandidate($id, EmployeeRepository $employeeRepository)
     {

@@ -5,18 +5,25 @@ namespace App\Form\Employee;
 
 
 use App\Entity\Employee;
-use App\Entity\Passport;
+use App\Service\StringService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-class EmployeeType extends AbstractType
+class GeneralEmployeeType extends AbstractType
 {
+    private $translator;
+
+    function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('firstname', TextType::class, [
@@ -32,12 +39,14 @@ class EmployeeType extends AbstractType
                 ],
             ])
             ->add('gender', ChoiceType::class, [
+                'required'   => true,
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'placeholder' => StringService::uc_first($this->translator->trans('wybierz płeć')),
                 'choices' => [
-                    'MALE' => 'MALE',
-                    'FEMALE' => 'FEMALE',
+                    StringService::uc_first($this->translator->trans('męska')) => 'MALE',
+                    StringService::uc_first($this->translator->trans('żeńska')) => 'FEMALE',
                 ]
             ])
             ->add('dateOfBirth', DateType::class, [
@@ -64,24 +73,33 @@ class EmployeeType extends AbstractType
                     'type' => 'text'
                 ],
             ])
+            ->add('pipApplicationDate', DateType::class, [
+                'required'   => false,
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'form-control js-datepicker',
+                    'type' => 'text'
+                ],
+            ])
+            ->add('baxtUA', ChoiceType::class, [
+                'required'   => true,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'placeholder' => StringService::uc_first($this->translator->trans('wybierz status')),
+                'choices' => [
+                    StringService::uc_first($this->translator->trans('zatrudniony')) => 'HIRED',
+                    StringService::uc_first($this->translator->trans('niezatrudniony')) => 'NOT_HIRED',
+                    StringService::uc_first($this->translator->trans('do weryfikacji')) => 'NEED_VERIFICATION',
+                ]
+            ])
             ->add('contact', ContactType::class, [
                 'required'   => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
-            ->add('passport', CollectionType::class, [
-                'entry_type' => PassportType::class,
-                'required'   => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-                'label' => false,
-            ])
-            ->add('update_profile', SubmitType::class, [
+            ->add('update', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-info btn-fill pull-right btn-save',
                 ]

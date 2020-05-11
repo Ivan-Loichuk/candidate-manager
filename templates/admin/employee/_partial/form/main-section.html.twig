@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card border-top">
     <div class="card-header">
         <h4 class="card-title">{{ 'podstawowe dane'|trans|capitalize }}</h4>
     </div>
@@ -59,6 +59,26 @@
                     {{ form_widget(form.dateOfDeparture) }}
                     <div class="errors">
                         {{ form_errors(form.dateOfDeparture) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="candidate_gender">{{ 'data zgłoszenia PIP'|trans|capitalize }}</label>
+                    {{ form_widget(form.pipApplicationDate) }}
+                    <div class="errors">
+                        {{ form_errors(form.pipApplicationDate) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                    <label for="candidate_baxt_ua">{{ 'baxt_UA'|trans }}</label>
+                    {{ form_widget(form.baxtUA) }}
+                    <div class="errors">
+                        {{ form_errors(form.baxtUA) }}
                     </div>
                 </div>
             </div>

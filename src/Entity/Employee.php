@@ -51,7 +51,7 @@ class Employee
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $pipAplicationDate;
+    private $pipApplicationDate;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ResidenceCard", mappedBy="employee", orphanRemoval=true)
@@ -64,22 +64,22 @@ class Employee
     private $passport;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Contract", mappedBy="employee", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Contract", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $contract;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MedicalExamination", mappedBy="employee", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MedicalExamination", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $medicalExamination;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SafetyTraining", mappedBy="employee", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\SafetyTraining", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $safetyTraining;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DelegationList", mappedBy="employee", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\DelegationList", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
      */
     private $delegationList;
 
@@ -108,6 +108,11 @@ class Employee
      */
     private $createdDate;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Permission", mappedBy="employee", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $permission;
+
     public function __construct()
     {
         $this->residenceCard = new ArrayCollection();
@@ -119,6 +124,7 @@ class Employee
         $this->document = new ArrayCollection();
 
         $this->setCreatedDate(new \DateTime('now'));
+        $this->permission = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,14 +168,14 @@ class Employee
         return $this;
     }
 
-    public function getPipAplicationDate(): ?\DateTimeInterface
+    public function getPipApplicationDate(): ?\DateTimeInterface
     {
-        return $this->pipAplicationDate;
+        return $this->pipApplicationDate;
     }
 
-    public function setPipAplicationDate(?\DateTimeInterface $pipAplicationDate): self
+    public function setPipApplicationDate(?\DateTimeInterface $pipApplicationDate): self
     {
-        $this->pipAplicationDate = $pipAplicationDate;
+        $this->pipApplicationDate = $pipApplicationDate;
 
         return $this;
     }
@@ -471,6 +477,37 @@ class Employee
     public function setCreatedDate(\DateTimeInterface $createdDate): self
     {
         $this->createdDate = $createdDate;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Permission[]
+     */
+    public function getPermission(): Collection
+    {
+        return $this->permission;
+    }
+
+    public function addPermission(Permission $permission): self
+    {
+        if (!$this->permission->contains($permission)) {
+            $this->permission[] = $permission;
+            $permission->setEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removePermission(Permission $permission): self
+    {
+        if ($this->permission->contains($permission)) {
+            $this->permission->removeElement($permission);
+            // set the owning side to null (unless already changed)
+            if ($permission->getEmployee() === $this) {
+                $permission->setEmployee(null);
+            }
+        }
 
         return $this;
     }

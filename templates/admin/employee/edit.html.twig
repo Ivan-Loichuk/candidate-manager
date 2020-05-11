@@ -1,37 +1,105 @@
 {% extends 'admin/employee/index.html.twig' %}
 
 {% block body %}
-    <div class="content">
-        {{ form_start(form) }}
+    <div class="content employee-edit">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     {% include '@common_admin_tpl/flashes.html.twig' %}
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    {% include '@admin_employee_tpl/_partial/form/main-section.html.twig' %}
-                </div>
-                <div class="col-md-6">
-                    {% include '@admin_employee_tpl/_partial/form/contact-section.html.twig' %}
-                </div>
-                <div class="col-md-6">
-                    {% include '@admin_employee_tpl/_partial/form/passport-section.html.twig' %}
-                </div>
-
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="text-right">
-                                {{ form_widget(form.update_profile,  { 'label': "Zapisz"|trans }) }}
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#main-data" role="tab" aria-controls="home" aria-selected="true">{{ 'Ogólne'|trans|capitalize }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#documents" role="tab" aria-controls="profile" aria-selected="false">{{ 'dokumenty pracy'|trans|capitalize }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">{{ 'legalizacja'|trans|capitalize }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">{{ 'załączniki'|trans|capitalize }}</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="main-employee">
+                <div class="tab-pane fade show active tab-pane-border" id="main-data" role="tabpanel" aria-labelledby="home-tab">
+                    {{ form_start(generalForm) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/main-section.html.twig'  with {'form': generalForm} %}
+                            </div>
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/contact-section.html.twig' with {'form': generalForm} %}
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="text-right">
+                                            {{ form_widget(generalForm.update,  { 'label': "Zapisz"|trans }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(generalForm) }}
                 </div>
+                <div class="tab-pane fade tab-pane-border" id="documents" role="tabpanel" aria-labelledby="contact-tab">
+                    {{ form_start(jobDocumentsForm) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/medical-examination-section.html.twig' with {'form': jobDocumentsForm} %}
+                            </div>
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/safety-training-section.html.twig' with {'form': jobDocumentsForm} %}
+                            </div>
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/delegation-list-section.html.twig' with {'form': jobDocumentsForm} %}
+                            </div>
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/contract-section.html.twig' with {'form': jobDocumentsForm} %}
+                            </div>
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/permission-section.html.twig' with {'form': jobDocumentsForm} %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="text-right">
+                                            {{ form_widget(jobDocumentsForm.update,  { 'label': "Zapisz"|trans }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(jobDocumentsForm) }}
+                </div>
+                <div class="tab-pane fade tab-pane-border" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    {{ form_start(legalizationForm) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% include '@admin_employee_tpl/_partial/form/passport-section.html.twig' with {'form': legalizationForm} %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="text-right">
+                                            {{ form_widget(legalizationForm.update,  { 'label': "Zapisz"|trans }) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ form_end(legalizationForm) }}
+                </div>
+                <div class="tab-pane fade tab-pane-border" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
             </div>
         </div>
-        {{ form_end(form) }}
     </div>
 {% endblock  %}

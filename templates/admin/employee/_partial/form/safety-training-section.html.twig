@@ -1,0 +1,75 @@
+<div class="card border-top">
+    <div class="card-header">
+        <h4 class="card-title">{{ 'BHP'|trans }}</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                {% macro tagCollectionItem(formData) %}
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="safety_training_data_from">{{ 'data od'|trans|capitalize }}</label>
+                            {{ form_widget(formData.dateFrom) }}
+                            <div class="errors">
+                                {{ form_errors(formData.dateFrom) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 remove-collection-wrapper">
+                        <div class="form-group w-100">
+                            <label for="safety_training_date_to">{{ 'data do'|trans|capitalize }}</label>
+                            {{ form_widget(formData.dateTo) }}
+                            <div class="errors">
+                                {{ form_errors(formData.dateTo) }}
+                            </div>
+                        </div>
+                        <a href="#" class="js-remove-collection pull-right">
+                            <span class="fa fa-close"></span>
+                        </a>
+                    </div>
+                {% endmacro %}
+
+                <div id="safety-training-fields-list" class="list-group"
+                     data-prototype="{{ _self.tagCollectionItem(form.safetyTraining.vars.prototype)|e }}"
+                     data-widget-tags="{{ '<div class="row js-collection"></div>'|e }}"
+                     data-widget-counter="{{ form.safetyTraining|length }}">
+                    {% if form.safetyTraining|length > 0 %}
+                        {% for safetyTrainingField in form.safetyTraining %}
+                            <div class="row js-collection">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label for="safety_training_date_from">{{ 'data od'|trans|capitalize }}</label>
+                                        {{ form_widget(safetyTrainingField.dateFrom) }}
+                                        <div class="errors">
+                                            {{ form_errors(safetyTrainingField.dateFrom) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 remove-collection-wrapper">
+                                    <div class="form-group w-100">
+                                        <label for="safety_training_date_to">{{ 'data do'|trans|capitalize }}</label>
+                                        {{ form_widget(safetyTrainingField.dateTo) }}
+                                        <div class="errors">
+                                            {{ form_errors(safetyTrainingField.dateTo) }}
+                                        </div>
+                                    </div>
+                                    <a href="#" class="js-remove-collection pull-right">
+                                        <span class="fa fa-close"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {{ form_widget(form.safetyTraining) }}
+                    {% endif %}
+                </div>
+
+                <a type="button"
+                   class="add-another-collection-widget"
+                   data-list-selector="#safety-training-fields-list">{{ 'Dodaj okres BHP'|trans }}</a>
+
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
