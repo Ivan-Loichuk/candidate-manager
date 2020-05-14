@@ -29,6 +29,7 @@ Encore
     .addEntry('admin-application', './assets/js/admin-panel/admin-application.js')
     .addEntry('security-login', './assets/js/security/login.js')
     .addEntry('admin-employee', './assets/js/admin-panel/admin-employee.js')
+    .addEntry('admin-company', './assets/js/admin-panel/admin-company.js')
     .addEntry('admin-vendor', [
         './assets/js/admin-panel/admin-vendor.js',
         './node_modules/jquery/dist/jquery.min.js',

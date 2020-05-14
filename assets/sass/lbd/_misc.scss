@@ -4,13 +4,20 @@ body,
     min-height: 100vh;
     position: relative;
 }
-a{
+a {
   color: $info-color;
 
   &:hover, &:focus{
      color: $info-states-color;
      text-decoration: none;
   }
+}
+a.nav-link {
+    color: $black-color;
+    &:hover, &:focus{
+        color: $info-states-color;
+        text-decoration: none;
+    }
 }
 
 a:focus, a:active,

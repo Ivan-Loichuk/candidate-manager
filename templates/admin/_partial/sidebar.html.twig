@@ -14,22 +14,37 @@
 {#            </li>#}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_employees' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('app_admin_employees') }}">
-                    <i class="nc-icon nc-circle-09"></i>
+                    <i class="fas fa-users"></i>
                     <p> {{ 'pracowniki'|trans|capitalize }}</p>
                 </a>
             </li>
             <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_companies' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('app_admin_companies') }}">
-                    <i class="nc-icon nc-notes"></i>
+                    <i class="far fa-building"></i>
                     <p>{{ 'firmy'|trans|capitalize }}</p>
                 </a>
             </li>
             <li class="nav-item {% if app.request.attributes.get('_route') == 'app_admin_vehicles' %}active{% endif %}">
                 <a class="nav-link" href="{{ path('app_admin_vehicles') }}">
-                    <i class="nc-icon nc-pin-3"></i>
-                    <p>Samochody firmowe</p>
+                    <i class="fas fa-car"></i>
+                    <p>{{ 'samochody'|trans|capitalize }}</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-add-employee" href="#" data-toggle="modal" data-target="#add-employee">
+                    <i class="far fa-plus-square"></i>
+                    <p>{{ 'dodaj pracownika'|trans|capitalize }}</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#add-company">
+                    <i class="far fa-plus-square"></i>
+                    <p>{{ 'dodaj firmę'|trans|capitalize }}</p>
                 </a>
             </li>
         </ul>
     </div>
 </div>
+
+{% include '@admin_employee_tpl/_partial/modal/add-employee.html.twig' %}
+{% include '@admin_company_tpl/_partial/modal/add-company.html.twig' %}

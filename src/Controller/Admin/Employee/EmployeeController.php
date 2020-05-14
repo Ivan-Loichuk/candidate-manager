@@ -52,41 +52,19 @@ class EmployeeController extends AbstractController
             10
         );
 
-        $form = $this->createForm(SimpleEmployeeType::class);
-
-        if ($request->isMethod('POST')) {
-            $form->submit($request->request->get($form->getName()));
-
-            if ($form->isSubmitted() && $form->isValid()) {
-                $employee = $form->getData();
-                $this->entityManager->persist($employee);
-                $this->entityManager->flush();
-
-                $this->addFlash(
-                    'success',
-                    $this->translator->trans('Nowy pracownik został dodany')
-                );
-
-                return $this->redirectToRoute('app_employee_edit', [
-                    'id' => $employee->getId(),
-                ]);
-            }
-        }
-
         return $this->render('admin/employee/index.html.twig', [
             'pagination' => $pagination,
-            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/employee/{id}/edit", name="app_employee_edit")
+     * @Route("/employee/{id}/edit", name="app_admin_employee_edit")
      * @param $id
      * @param EmployeeRepository $employeeRepository
      * @param Request $request
      * @return Response
      */
-    public function createEmployee($id, EmployeeRepository $employeeRepository, Request $request): Response
+    public function editEmployee($id, EmployeeRepository $employeeRepository, Request $request): Response
     {
         $employee = $employeeRepository->findOneBy(['id' => $id]);
 
@@ -148,5 +126,38 @@ class EmployeeController extends AbstractController
                 'employee' => $employee,
             ]
         );
+    }
+
+    /**
+     * @Route("/employee/add-form", methods="GET|POST", name="app_admin_employee_add_form")
+     */
+    public function addEmployeeForm(Request $request)
+    {
+        $form = $this->createForm(SimpleEmployeeType::class, null, [
+            'action' => $this->generateUrl('app_admin_employee_add_form'),
+        ]);
+
+        if ($request->isMethod('POST')) {
+            $form->submit($request->request->get($form->getName()));
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $employee = $form->getData();
+                $this->entityManager->persist($employee);
+                $this->entityManager->flush();
+
+                $this->addFlash(
+                    'success',
+                    $this->translator->trans('Nowy pracownik został dodany')
+                );
+
+                return $this->redirectToRoute('app_admin_employee_edit', [
+                    'id' => $employee->getId(),
+                ]);
+            }
+        }
+
+        return $this->render('admin/employee/_partial/form/add-employee.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

@@ -36,6 +36,7 @@ class Company
     public function __construct()
     {
         $this->employee = new ArrayCollection();
+        $this->setCreatedDate(new \DateTime('now'));
     }
 
     public function getId(): ?int

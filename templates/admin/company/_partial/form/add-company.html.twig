@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="company_name">{{ 'nazwa firmy'|trans|capitalize }}</label>
+            {{ form_widget(form.name) }}
+            <div class="errors">
+                {{ form_errors(form.name) }}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-fill btn-default btn-close" data-dismiss="modal">{{ 'zamknij'|trans|capitalize }}</button>
+        {{ form_widget(form.update_profile) }}
+    </div>
+{{ form_end(form) }}

@@ -3,3 +3,5 @@ twig:
     paths:
         '%kernel.project_dir%/templates/admin/_partial': common_admin_tpl
         '%kernel.project_dir%/templates/admin/employee': admin_employee_tpl
+        '%kernel.project_dir%/templates/admin/company': admin_company_tpl
+        '%kernel.project_dir%/node_modules': node_modules_tpl

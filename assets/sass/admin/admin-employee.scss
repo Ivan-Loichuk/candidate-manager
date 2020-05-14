@@ -5,27 +5,14 @@
   }
 }
 
-.employee-list .add-employee-btn {
-  border-radius:6px;
-  border:1px solid #337fed;
-  display:inline-block;
-  cursor:pointer;
-  color:#ffffff;
-  font-family:Arial;
-  font-size:16px;
-  padding: 5px 20px;
-  text-decoration:none;
-  text-shadow:0px 1px 0px #1570cd;
-  position: absolute;
-  right: 15px;
-  top: 10px;
-
-  &:hover {
-    background-color:#1e62d0;
-  }
-  &:active {
-    background-color:#1e62d0;
-    top: 9px;
+.employee-list{
+  .list-controls {
+    i {
+      color: #495057;
+      &:hover {
+        color: #778088;
+      }
+    }
   }
 }
 

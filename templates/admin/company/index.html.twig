@@ -1,5 +1,70 @@
 {% extends 'admin/base.html.twig' %}
 
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('admin-company') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('admin-company') }}
+{% endblock %}
+
 {% block body %}
-    Company
+    <div class="content company-list">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    {% include '@common_admin_tpl/flashes.html.twig' %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header ">
+                            <h4 class="card-title"><i class="fas fa-list"></i> {{ 'lista dostępnych firm'|trans|capitalize }}</h4>
+                            <button type="button" class="btn-primary add-btn" data-toggle="modal" data-target="#add-company">{{ 'dodaj firmę'|trans|capitalize }}</button>
+                            <!-- Actual search box -->
+                            <form method="get">
+                                <div class="form-group has-search">
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                    <input type="search" class="form-control" name="q" placeholder="{{ 'search'|trans|capitalize }}">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body table-full-width table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                <th>ID</th>
+                                <th>{{ 'nazwa firmy'|trans|capitalize }}</th>
+                                <th>{{ 'akcje'|trans|capitalize }}</th>
+                                </thead>
+                                <tbody>
+                                {% for company in pagination %}
+                                    <tr>
+                                        <td>{{ company.id }}</td>
+                                        <td>{{ company.name }}</td>
+                                        <td class="list-controls">
+                                            <a href="#" title="{{ 'edytuj dane firmy'|trans|capitalize }}" class="icon-link" data-toggle="modal" data-target="#edit-company-{{ company.id }}">
+                                                <i class="fas fa-edit fa-lg"></i>
+                                            </a>
+                                            <a href="#" title="{{ 'usuń firmę'|trans|capitalize }}" class="icon-link" data-toggle="modal" data-target="#delete-company-{{ company.id }}">
+                                                <i class="fas fa-trash-alt fa-lg"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% include '@admin_company_tpl/_partial/modal/delete-company.html.twig' %}
+                                    {% include '@admin_company_tpl/_partial/modal/edit-company.html.twig' %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-pagination">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

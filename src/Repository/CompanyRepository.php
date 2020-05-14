@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Company;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,45 @@ class CompanyRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Company::class);
+    }
+
+    /**
+     * @param string|null $term
+     * @return QueryBuilder
+     */
+    public function getWithSearchQueryBuilder(?string $term): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        if ($term) {
+            $qb->andWhere('LOWER(c.name) LIKE :term OR c.id = :id')
+                ->setParameter('term', '%' . strtolower($term) . '%')
+                ->setParameter('id', (int) $term)
+            ;
+        }
+
+        return $qb;
+    }
+
+    /**
+     * @param int $company_id
+     * @return bool
+     */
+    public function hasEmployees(int $company_id): bool
+    {
+        if (!$company_id) {
+            return false;
+        }
+
+        $qb = $this->createQueryBuilder('c')
+            ->innerJoin('c.employee', 'e')
+            ->where('c.id = :company_id')
+            ->setParameter('company_id', $company_id)
+            ->setMaxResults(1);
+
+        $query = $qb->getQuery();
+
+        return (int) count($query->getResult());
     }
 
     // /**

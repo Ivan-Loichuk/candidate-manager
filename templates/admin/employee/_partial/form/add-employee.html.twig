@@ -1,0 +1,29 @@
+{{ form_start(form) }}
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="candidate_firstname">{{ 'imię'|trans|capitalize }}</label>
+            {{ form_widget(form.firstname) }}
+            <div class="errors">
+                {{ form_errors(form.firstname) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="candidate_lastname">{{ 'nazwisko'|trans|capitalize }}</label>
+            {{ form_widget(form.lastname) }}
+            <div class="errors">
+                {{ form_errors(form.lastname) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="candidate_gender">{{ 'płeć'|trans|capitalize }}</label>
+            {{ form_widget(form.gender) }}
+            <div class="errors">
+                {{ form_errors(form.gender) }}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-fill btn-default btn-close" data-dismiss="modal">{{ 'zamknij'|trans|capitalize }}</button>
+        {{ form_widget(form.update_profile) }}
+    </div>
+{{ form_end(form) }}
